@@ -1,9 +1,8 @@
 import React from 'react';
+import TaksList from './apps/tasks/TasksList';
 
-import Ingredients from './components/Ingredients/Ingredients';
-
-const App = props => {
-  return <Ingredients />;
+const App = () => {
+    return <TaksList />;
 };
 
 export default App;
