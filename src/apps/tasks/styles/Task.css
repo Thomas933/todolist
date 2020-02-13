@@ -1,0 +1,32 @@
+.task {
+    display: inline-block;
+}
+
+.task__control {
+    margin-right: 3rem;
+    margin-top: 0;
+    display: inline-block;
+}
+
+.task__container {
+    margin-top: 3rem auto;
+    margin-bottom: 100px;
+}
+
+.task__controller {
+    float: right;
+    margin-right: 2rem;
+    margin-top: 4rem;
+}
+
+.task__label {
+    padding-right: 1rem;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 1rem;
+}
+
+.task__value {
+    padding-top: 15px;
+}
+

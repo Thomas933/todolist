@@ -1,63 +1,55 @@
-import React, { useState } from 'react';
-import { statuses } from '../../shared/constants';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import './styles/Task.css';
+import TasksContext from '../../context/TasksContext';
+import TaskEditorContext from '../../context/TaskEditorContext';
+import { statusConvertor } from '../../shared/constants';
+import Button from '../../components/Button';
 
-const Task = ({ tasks }) => {
-    const [name, setName] = useState('');
-    const [status, setStatus] = useState('');
+const Task = ({ task }) => {
+    const { name, status, createdAt } = task;
 
-    const handleSubmitTask = () => {
-        const newTask = createOjectTask();
-        tasks.push(newTask);
-        setTasksToLocalStroage();
-        setName('');
-        setStatus('');
+    const { tasks, changeTasks, tasksListHandler } = useContext(TasksContext);
+    const { setTask, taskEditorHandler } = useContext(TaskEditorContext);
+
+    const handleRemoveTask = () => {
+        const newTasks = tasks.filter(item => item.createdAt !== createdAt);
+        changeTasks(newTasks);
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
     };
 
-    const createOjectTask = () => ({
-        name,
-        status,
-        createdAt: new Date().toISOString(),
-    });
-
-    const setTasksToLocalStroage = () => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+    const showTaskEditorHandler = () => {
+        tasksListHandler(false);
+        taskEditorHandler(true);
+        setTask(task);
     };
 
     return (
-        <div>
-            <label>
-                Name
-                <input onChange={e => setName(e.target.value)} value={name} />
-            </label>
-            <label>
-                Status
-                <select
-                    onChange={e => setStatus(e.target.value)}
-                    value={status}
-                >
-                    {statuses.map(({ value, name }) => {
-                        return (
-                            <option value={value} key={value}>
-                                {name}
-                            </option>
-                        );
-                    })}
-                </select>
-            </label>
-            <button onClick={() => handleSubmitTask()}>Create task</button>
+        <div className="task-list__row">
+            <div className="task__value">{name}</div>
+            <div className="task__value">{statusConvertor(status)}</div>
+            <div className="task__value">
+                {new Date(createdAt).toLocaleString()}
+            </div>
+            <div className="task__control">
+                <Button btnType="Danger" handleClick={showTaskEditorHandler}>
+                    Edit
+                </Button>
+
+                <Button btnType="Error" handleClick={handleRemoveTask}>
+                    Delete
+                </Button>
+            </div>
         </div>
     );
 };
 
 Task.propTypes = {
-    tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            status: PropTypes.string.isRequired,
-            createdAt: PropTypes.string.isRequired,
-        })
-    ),
+    task: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
+    }),
 };
 
 export default Task;

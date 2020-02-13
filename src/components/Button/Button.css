@@ -1,0 +1,19 @@
+.button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0.5rem;
+    border-color: none !important;
+    cursor: pointer;
+}
+
+.Success {
+    background-color: green !important;
+}
+
+.Danger {
+    background-color: orange !important;
+}
+
+.Error {
+    background-color: tomato !important;
+}
