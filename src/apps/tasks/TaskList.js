@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, memo } from 'react';
 import Task from './Task';
 import TasksContext from '../../context/TasksContext';
 import TaskEditorContext from '../../context/TaskEditorContext';
@@ -68,4 +68,4 @@ const TaksList = () => {
     );
 };
 
-export default TaksList;
+export default memo(TaksList);

@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-
 import './Select.css';
 
 const Select = props => {
     const { handleChange, value, options } = props;
-    console.log(props);
     return (
         <select
             className="select"

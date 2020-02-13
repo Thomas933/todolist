@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-
 import './Input.css';
 
 const Input = props => {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import PropTypes from 'prop-types';
 import './styles/Task.css';
 import TasksContext from '../../context/TasksContext';
@@ -52,4 +52,4 @@ Task.propTypes = {
     }),
 };
 
-export default Task;
+export default memo(Task);

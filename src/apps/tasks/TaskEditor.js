@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, memo } from 'react';
 import { statuses, LOCAL_STORAGE_ITEMS_KEY } from '../../shared/constants';
 import TasksContext from '../../context/TasksContext';
 import PropTypes from 'prop-types';
@@ -85,4 +85,4 @@ TaskEditor.propTypes = {
     }),
 };
 
-export default TaskEditor;
+export default memo(TaskEditor);

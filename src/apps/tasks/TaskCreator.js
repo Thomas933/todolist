@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, memo } from 'react';
 import { statuses } from '../../shared/constants';
 import TasksContext from '../../context/TasksContext';
 import Card from '../../components/Card';
@@ -81,4 +81,4 @@ const TaskCreator = () => {
     );
 };
 
-export default TaskCreator;
+export default memo(TaskCreator);

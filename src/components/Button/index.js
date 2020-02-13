@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
-
 import './Button.css';
-
 import PropTypes from 'prop-types';
+
 const Button = props => {
     const { handleClick, btnType } = props;
     return (
