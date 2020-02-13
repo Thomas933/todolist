@@ -1,6 +1,7 @@
-import React, { useState, useContext, memo } from 'react';
+import React, { useState, useContext, memo, useCallback } from 'react';
 import { statuses } from '../../shared/constants';
 import TasksContext from '../../context/TasksContext';
+import TaskCreatorContext from '../../context/TaskCreatorContext';
 import Card from '../../components/Card';
 import { LOCAL_STORAGE_ITEMS_KEY } from '../../shared/constants';
 import Input from '../../components/Input';
@@ -11,6 +12,7 @@ const TaskCreator = () => {
     const { tasks, changeTasks, tasksListHandler, showTaskList } = useContext(
         TasksContext
     );
+    const { taskCreatorHandler } = useContext(TaskCreatorContext);
     const [name, setName] = useState('');
     const [status, setStatus] = useState(statuses[0].value);
 
@@ -25,12 +27,14 @@ const TaskCreator = () => {
 
         setName('');
         setStatus('');
+        taskCreatorHandler(false);
         tasksListHandler(true);
     };
 
-    const handleSubmitCancelTask = () => {
+    const handleSubmitCancelTask = useCallback(() => {
+        taskCreatorHandler(false);
         tasksListHandler(true);
-    };
+    }, [taskCreatorHandler, tasksListHandler]);
 
     const createOjectTask = () => ({
         name,

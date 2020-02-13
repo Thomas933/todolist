@@ -4,6 +4,7 @@ const TasksEditorContext = createContext({
     task: {name: '', status: '', createdAt: ''},
     setTask: () => {},
     showTaskEditor: true,
+    taskEditorHandler: () => {}
 });
 
 export default TasksEditorContext;

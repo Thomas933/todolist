@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TaskList from './apps/tasks/TaskList';
 import TaskEditorContext from './context/TaskEditorContext';
 import TasksContext from './context/TasksContext';
+import TaskCreatorContext from './context/TaskCreatorContext';
 import { LOCAL_STORAGE_ITEMS_KEY } from './shared/constants';
 
 const App = () => {
@@ -10,6 +11,8 @@ const App = () => {
 
     const [task, setTask] = useState({ name: '', createdAt: '', status: '' });
     const [showTaskEditor, handleShowTaskEditor] = useState(false);
+
+    const [showTaskCreator, handleShowTaskCreator] = useState(false);
 
     const getDefaultTasks = () => {
         if (localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) {
@@ -34,6 +37,10 @@ const App = () => {
         handleShowTaskEditor(value);
     };
 
+    const taskCreatorHandler = value => {
+        handleShowTaskCreator(value);
+    };
+
     const tasksContextState = {
         tasks,
         changeTasks,
@@ -48,12 +55,19 @@ const App = () => {
         taskEditorHandler,
     };
 
+    const taskCreatorState = {
+        showTaskCreator,
+        taskCreatorHandler,
+    };
+
     return (
         <TasksContext.Provider value={tasksContextState}>
-            <TaskEditorContext.Provider value={taskEditorState}>
-                <h1>Aplication ToDo</h1>
-                <TaskList />
-            </TaskEditorContext.Provider>
+            <TaskCreatorContext.Provider value={taskCreatorState}>
+                <TaskEditorContext.Provider value={taskEditorState}>
+                    <h1>Aplication ToDo</h1>
+                    <TaskList />
+                </TaskEditorContext.Provider>
+            </TaskCreatorContext.Provider>
         </TasksContext.Provider>
     );
 };

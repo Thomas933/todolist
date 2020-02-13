@@ -2,6 +2,7 @@ import React, { useContext, useState, useCallback, memo } from 'react';
 import Task from './Task';
 import TasksContext from '../../context/TasksContext';
 import TaskEditorContext from '../../context/TaskEditorContext';
+import TaskCreatorContext from '../../context/TaskCreatorContext';
 import Card from '../../components/Card';
 import './styles/TaskList.css';
 import TaskCreator from './TaskCreator';
@@ -10,8 +11,9 @@ import TaskEditor from './TaskEditor';
 const TaksList = () => {
     const { tasks, showTaskList, tasksListHandler } = useContext(TasksContext);
     const { showTaskEditor } = useContext(TaskEditorContext);
-
-    const [showTaskCreator, handelShowTaskCreator] = useState(false);
+    const { showTaskCreator, taskCreatorHandler } = useContext(
+        TaskCreatorContext
+    );
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -23,8 +25,8 @@ const TaksList = () => {
 
     const handleTaskCreator = useCallback(() => {
         tasksListHandler(false);
-        handelShowTaskCreator(true);
-    }, [tasksListHandler]);
+        taskCreatorHandler(true);
+    }, [tasksListHandler, taskCreatorHandler]);
 
     return (
         <div className="task-list">
