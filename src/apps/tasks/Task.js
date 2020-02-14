@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './styles/Task.css';
 import TasksContext from '../../context/TasksContext';
 import TaskEditorContext from '../../context/TaskEditorContext';
-import { statusConvertor } from '../../shared/constants';
+import { statusConvertor } from '../../shared/utils';
 import Button from '../../components/Button';
 
 const Task = ({ task }) => {

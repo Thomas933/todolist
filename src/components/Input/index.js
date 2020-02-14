@@ -14,7 +14,7 @@ const Input = props => {
 };
 
 Input.propTypes = {
-    handleChange: PropTypes.func.isRequired,
+    handleInputChange: PropTypes.func.isRequired,
     value: PropTypes.string,
 };
 

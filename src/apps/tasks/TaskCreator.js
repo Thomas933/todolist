@@ -1,9 +1,8 @@
 import React, { useState, useContext, memo, useCallback } from 'react';
-import { statuses } from '../../shared/constants';
 import TasksContext from '../../context/TasksContext';
 import TaskCreatorContext from '../../context/TaskCreatorContext';
 import Card from '../../components/Card';
-import { LOCAL_STORAGE_ITEMS_KEY } from '../../shared/constants';
+import { LOCAL_STORAGE_ITEMS_KEY, statuses } from '../../shared/constants';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
